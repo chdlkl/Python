@@ -68,4 +68,5 @@ print ( ' origin a is: ', a )
 b = a[:]
 b[1] = 0
 print ( ' change b[1] = 0, the a is: ', a )
-print ( ' id(a) is: ', id(a), ' id(b) is: ', id(b) ) # id不同，改变b中元素后，a中相应位置的元素不会改变
+print ( ' id(a) is: ', id(a), ' id(b) is: ', id(b) )
+# id不同，改变b中元素后，a中相应位置的元素不会改变。字符串无论是=还是[:]赋值，id均相同，没有list这种情况
