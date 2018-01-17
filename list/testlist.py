@@ -62,10 +62,11 @@ print ( ' origin a is: ', a )
 b = a 
 b[1] = 0
 print ( ' change b[1] = 0, the a is: ', a )
-print ( ' id(a) is: ', id(a), ' id(b) is: ', id(b) ) # 这样赋值，id相同，改变b中元素后，a中相应位置元素也会改变
+print ( ' id(a) is: ', id(a), ' id(b) is: ', id(b) ) # 这样赋值，id相同，改变b中元素后，a中相应位置元素也会改变，这点很是蛋疼
 a = [ 1, 2, 3 ]
 print ( ' origin a is: ', a )
 b = a[:]
 b[1] = 0
 print ( ' change b[1] = 0, the a is: ', a )
-print ( ' id(a) is: ', id(a), ' id(b) is: ', id(b) ) # id不同，改变b中元素后，a中相应位置的元素不会改变
+print ( ' id(a) is: ', id(a), ' id(b) is: ', id(b) )
+# id不同，改变b中元素后，a中相应位置的元素不会改变。字符串无论是=还是[:]赋值，id均相同，没有list这种情况
