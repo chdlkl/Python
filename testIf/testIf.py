@@ -52,7 +52,61 @@ while guess != number:
   elif guess > number:
     print ( ' the guess number is more! ' )
 
+# if嵌套
+# 在嵌套if语句中，可以把if...elif...else结构放在另一个if...elif...else结构中
+# if 表达式1:
+#   语句
+#   if 表达式2:
+#     语句
+#   elif 表达式3:
+#     语句
+#   else:
+#     语句
+# elif 表达式4:
+#   语句
+# else:
+#   语句
+num = int( input( " please input a number: " ) )
+if num % 2 == 0:
+  if num % 3 == 0:
+    print ( " the number of input can be devided by 2 and 3! " )
+  else:
+    print ( " the number of input can be devided by 2 and 3 is not! " )
+else:
+  if num % 3 == 0:
+    print ( " the number of input can be devided by 3 and 2 is not! " )
+  else:
+    print ( " the number of input can not be devided by 2 and 3! " )
 
+# 例子
+import random
+x = random.choice( range(100) )  # 随机数0-99
+y = random.choice( range(200) )  # 随机数0-199
+if x > y:
+  print ( ' x : ', x )
+elif x == y:
+  print ( ' x + y : ', x + y )
+else:
+  print ( ' y : ', y )
+
+# 一个if对应一个else，但是一个if中可以嵌套多个if
+
+# 数字猜谜游戏优化
+print ( " guess number game: " )
+a = 1
+i = 0
+while a != 20:  # 注意冒号
+  a = int( input( " please input number: " ) )
+  i += 1
+  if a == 20:
+    if i < 3:
+      print ( " 真厉害，这么快就猜对了 " )
+    else:
+      print ( " 总算猜对了 " )
+  elif a < 20:
+    print ( " 你猜的数字太小了 " )
+  else:
+    print ( " 你猜的数字太大了 " )
 
 
 ###  退出提示
