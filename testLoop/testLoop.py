@@ -105,7 +105,7 @@ while var > 0:
 else:
     print ( " Good bye! " )
 # 循环语句中可以有else子句，它在穷尽列表（for循环）或条件变为false（while循环）
-# 导致熏昏终止时被执行，但循环被break终止时不执行
+# 导致循环终止时被执行，但循环被break终止时不执行
 
 # 查询质数
 for n in range(2, 10):
