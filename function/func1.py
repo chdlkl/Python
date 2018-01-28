@@ -261,3 +261,10 @@ def outer():
     print ( " x = ", x )
   inner()
 outer()
+
+# 寻找列表中绝对值最大的下标
+myList = [-1,2,-3,4,6,-5]
+absList = ( map(abs, myList) ) #对于Python3.x需要用list函数对map的返回值转换为列表
+absList = list ( absList )
+print (absList)
+print ( absList.index( max( absList ) ) )
