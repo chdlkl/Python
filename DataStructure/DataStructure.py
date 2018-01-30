@@ -210,16 +210,3 @@ for q, a in zip( que, ans ):
   print ( "What is your %s? It is %s" %(q,a) )
   
 
-
-
-
-
-
-
-
-
-
-
-
-
-
