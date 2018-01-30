@@ -87,10 +87,11 @@ print ( " vec = ", vec )
 
 vec1 = [2,4,6]
 vec2 = [4,3,-9]
-vec = [x*y for x in vec1 for y in vec2]
+vec = [x*y for x in vec1 for y in vec2]  # vec1中的每个元素都和vec2中的每个元素相乘
 print ( " vec = ", vec )
-vec = [x+y for x in vec1 for y in vec2]
+vec = [x+y for x in vec1 for y in vec2] # vec1中的每个元素都和vec2中的每个元素相加
 print ( " vec = ", vec )
+# 对应元素相加
 vec = [vec1[i]*vec2[i] for i in range(len(vec1))] # range()函数真是好用
 print ( " vec = ", vec )
 
