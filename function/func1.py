@@ -19,19 +19,10 @@ print ( " area = ", area(1.0) )
 
 def print_luk( name ):
   return name
-print ( " name = ", print_luk( "luk" ) )
+print ( " name = ", print_luk( "luk" ) ) # 这样调用，return后面必须跟返回值，否则返回none
+# print_luk( "luk" )  # 这样调用函数，因为函数print_luk中无执行语句，就算有返回值，也无输出
 
 # python3
-# 定义函数
-def printme( str1 ):
-  return str1
-
-# 调用函数
-print ( printme( ' luk ' ) )
-# 这里要注意，当用print调用函数时，函数中的所有语句都会执行。如果只写了return，后面没有表达式，会返回none
-printme( " luk " )
-# 如果直接写函数名，因为函数没有任何执行语句，就算有返回值，也无任何输出
-
 # python传不可变对象
 def ChangeInt(a):
   print ( ' before a = ', a )
@@ -46,7 +37,7 @@ print ( " b = ", b )
 
 # python传入可变参数
 def Changme( list1 ):
-  list1.append( [1,2,3,4] )
+  list1.append( 1 )  # append()函数里面的参数为1个整数，或列表（字典等）
   print ( " in : ", list1 )
   return list1
 
@@ -61,7 +52,8 @@ def Changeme( mylist ):
   return
 mylist = [10,20,30,40];
 Changeme( mylist );
-print ( " Out function: ", mylist ) # 这样写也不会影响外部的mylist
+print ( " Out function: ", mylist )
+# 这样写也不会影响外部的mylist，这是因为外面的mylist为全局变量，Changeme函数中的mylist为局部变量，两者id不同
 
 # python传入时不指定参数顺序
 def printinfo(name, age):
@@ -147,7 +139,7 @@ def sum( arg1, arg2 ):
   print ( " In function total is ", total )
   return total;
 
-# 调用函数sum
+# 调用函数sum，输出函数执行语句结果
 sum(10,20)
 print ( " Out function total is ", total )
  
@@ -175,7 +167,7 @@ def outer():
 # 调用函数outer
 outer()
 
-# lambda匿名函数也是可以用“关键字参数”进行参数传递
+# lambda匿名函数也是可以用“关键字参数”进行参数传递，为了不记混淆，建议在调用函数的同时进行指定，例如g(x=1,y=2)
 g = lambda x, y: x**2 + y**2
 print ( " g(2,3) = ", g(2,3) )  # 默认为g(x=2, y=3)
 print ( " g(y=3,x=2) =  ", g(y=3,x=2) )  # 不选择默认时，需要指定
@@ -197,15 +189,15 @@ b = 10
 # 再次调用ss()
 ss()
 
-# 存在一种特殊情况
+# 严重注意：函数内能访问全局变量，但不能更新（修改）其值，除非使用global
+# 例如
 a = 10
 def test():
   a = a + 1
   print ( " a = ", a )
-# test() # 这种情况报错，因为test函数中不能对全局变量a更新
+# test()
+# 这种情况报错，主要原因还是函数中局部变量a没有声明(fortran为初始化)或是非法修改全局变量a的值，记住，只能访问不能修改
 
-
-# 注意：函数内能访问全局变量，但不能更新（修改）其值，除非使用global
 a = 10
 def sum(n):
   n = n + a  # 访问全局变量的值
