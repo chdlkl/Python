@@ -19,7 +19,7 @@ list3.insert(len(list3),100)  # 在list3最后一个位置插入100, 相当于li
 print ( " list3: ", list3 )
 
 # 4. list.remove(x):删除列表中值为x的第一个元素。如果没有这样的元素，就会返回一个错误
-list3.remove(0);
+list3.remove(1);
 print ( " list3: ", list3 )
 
 # 5. 从列表指定位置删除元素，并将其返回。如果没有指定索引，list.pop()返回最后一个元素，元素随机从列表中删除
@@ -31,7 +31,7 @@ list3.clear()
 print ( " list3: ", list3 )
 print ( " list3 has been cleared! " )
 
-# 7. list.index(x):返回列表中第一个值为x的索引。如果没有该元素就会返回一个错误
+# 7. list.index(x):返回列表中第一个(如果有多个x)值为x的索引。如果没有该元素就会返回一个错误
 print ( " list2: ", list2 )
 print ( " list2.index(3): ", list2.index(3) )
 
@@ -66,14 +66,14 @@ print ( " stack: ", stack )
 # 列表推导式
 
 vec = [1,2,3];
-vec = [3*x for x in vec]
+vec = [3*x for x in vec] # 类似于fortran的[ i, i = 1, 3 ]
 print ( " vec = ", vec )
 
 vec = [ [x,x**2] for x in vec ]
 print ( " vec = ", vec )
 print ( " vec[1][1] = ", vec[1][1] )
 
-# 用x.strip()函数去掉列表中字符串两端的空格
+# 用x.strip()函数去掉列表中字符串两端的空格，可用于后面文件的批量处理
 freshfruit = [ '  banana', ' loganberry ', 'passion fruit  ' ];
 freshfruit = [ x.strip() for x in freshfruit ]
 print ( " freshfruit: ", freshfruit )
@@ -82,7 +82,7 @@ print ( " freshfruit: ", freshfruit )
 # vec = [2,3,4]
 # 这里要注意，如果vec是一维向量，则下面语句写if>某个数
 # 如果vec是一个二维数组，2*x作用于子列表，表示输出两次，并不是给每个数字乘以2，如果不满足，则清楚不满足条件的列表元素
-vec = [ 2*x for x in vec if x > [3,10] ] 
+vec = [ 2*x for x in vec if x > [3,10] ] # 2*list，重复输出list两次
 print ( " vec = ", vec )
 
 vec1 = [2,4,6]
@@ -158,7 +158,7 @@ print ( " a ^ b ", a ^ b ) # 在a或b中的字母，但不同时在a和b中
 # 集合也支持推导式
 a = { x for x in 'abracada' if x not in 'abc' }
 
-# 字典
+# 字典，添加、删除元素都是对键赋值或是删除
 tel = { 'jack': 4098, 'sape': 4139 }
 tel['guide'] = 4127 # 添加元素
 print ( " tel: ", tel )
