@@ -122,3 +122,12 @@ for i in value:
   f.write( s ) # 默认不换行
   f.write( '\n' )
 f.close()
+
+f = open( "foo2.txt", 'w' )
+str1 = [ 'luk', 2, 3, 4, 5, 6 ]
+for i in range( len(str1) ):
+  s = str1[i] 
+  s = str(s)
+  f.write( s ) # 往文件中写，默认不换行
+  f.write('\n')
+f.close()
