@@ -4,6 +4,8 @@ Created on Wed Mar  7 09:11:38 2018
 
 @author: luk
 """
+import numpy
+print ( " The numpy version: ", numpy.__version__ )
 
 import numpy as np
  

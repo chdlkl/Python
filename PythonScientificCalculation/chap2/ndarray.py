@@ -5,7 +5,8 @@ Created on Wed Mar  7 09:11:38 2018
 @author: luk
 """
 
-
+#------------------------------------------------------------------#
+# 2.1.1 创建
 import numpy as np
 # 创建一维数组
 a = np.array( [1,2,3,4] ) # 元素之间不能用空格隔开
@@ -107,3 +108,54 @@ print ( " np.multiply(a,b): ", np.multiply(a,b) )
 print ( " before transpose b: ", b )
 b = np.transpose(b)
 print ( " after transpose b: ", b )
+
+#------------------------------------------------------------------#
+# 2.1.2 元素类型
+# 通过dtype参数在创建数组时指定元素类型
+# float是64位的双精度浮点类型
+# complex是128位的双精度复数类型
+ai32 = np.array( [1,2,3,4], dtype = np.int32 )  # int32前面要加np.
+af = np.array( [1,2,3,4], dtype = float )
+ac = np.array( [1,2,3,4], dtype = complex )
+print ( ' ai32 type: ', ai32.dtype )  # 获取数组的元素类型
+print ( ' af type: ', af.dtype )
+print ( ' ac type: ', ac.dtype )
+
+# 使用astype()方法可以对数组的元素类型进行转化
+t1 = np.array( [1,2,3,4], dtype = np.float )
+t2 = np.array( [1,2,3,4], dtype = np.complex )
+t3 = t1.astype( np.int32 )
+t4 = t2.astype( np.complex64 )
+
+#------------------------------------------------------------------#
+# 2.1.3 自动生成数组
+# 一维数组
+# 1. arange()类似于内置函数range(), 指定开始值，终值和步长
+a = np.arange( 0, 1, 0.1, dtype = float )
+# 2. linspace()通过指定开始值，终值和元素个数创建等差数列一维数组
+# 可以通过endpoint指定是否包含终值，默认值位True, 即包含终值
+b = np.linspace( 0, 1, 10, dtype = np.float64 )
+# 3. logspace()创建的数组是等比数列。默认的基数是10
+a = np.logspace( 0, 2, 5 )
+b = np.logspace( 0, 1, 12, base = 2.0, endpoint = False )
+# 上面的三个函数创建的都是一维数组
+
+# 二维数组
+# 1. zeros()将数组初始化为0
+a = np.zeros( (2,2), np.int32 )
+# 2. ones()将数组初始化为1
+b = np.ones( (2,3), dtype = float )
+# 3. empty()只分配数组使用的内存，不对数组进行初始化操作
+c = np.empty( 4, np.int32 )
+# 4. full()将数组初始化为指定值
+c = np.full( (2,3), np.pi )
+# 此外， zeros_like(), ones_like(), full_like(), empty_like等函数创建与参数数组的
+# 形状和类型相同的数组，因此zeros_like(a)与zeros( a.shape, a.dtype )的效果相同
+# 5. 通过fromfunction()创建数组
+def func1(i):
+      return i % 4 + 1
+a = np.fromfunction( func1, (10,) )  # 数组大小为10，但是i的范围为0-9
+
+def func2( i, j ):
+      return ( i + 1 ) * ( j + 1 )
+b = np.fromfunction( func2, (9,9) ) # 数组大小为(9,9)，但是i和j的范围是0-8
