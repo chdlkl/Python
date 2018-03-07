@@ -1,7 +1,9 @@
 import numpy as np
 # 创建一维数组
-a = np.array( [1,2,3,4] )
+a = np.array( [1,2,3,4] ) # 元素之间不能用空格隔开
 b = np.array( (5,6,7,8) )
+a = 2*a
+print ( " 2*a: ", a )
 
 # 创建二维数组
 c = np.array( [ [1,2,3,4],[4,5,6,7],[6,7,8,9] ] )  
@@ -74,3 +76,26 @@ from numpy import random
 matrix1 = random.random(size=(2,4))  
 # 每维的大小  
 print( matrix1.shape )
+
+# 对应矩阵元素相乘
+# 对于aray对象：
+a = np.array( [[1,2],[3,4]] )
+b = np.array( [[4,3],[2,1]] )
+print ( " a*b: ", a*b )
+
+# 按矩阵运算法则相乘: np.dot和np.matmul运算结果一样
+print ( " np.dot(a,b): ", np.dot(a,b) )
+print ( " np.matmul(a,b): ", np.matmul(a,b) )
+
+# 对于matrix对象：
+a = np.mat( [[1,2],[3,4]] )
+b = np.mat( [[4,3],[2,1]] )
+# 对于matrix对象，'*'表示原生的矩阵乘法规则
+print ( " a*b: ", a*b )
+# multiply表示数量积
+print ( " np.multiply(a,b): ", np.multiply(a,b) )
+
+# 矩阵的转置
+print ( " before transpose b: ", b )
+b = np.transpose(b)
+print ( " after transpose b: ", b )
