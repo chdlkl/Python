@@ -1,3 +1,11 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Mar  7 09:11:38 2018
+
+@author: luk
+"""
+
+
 import numpy as np
 # 创建一维数组
 a = np.array( [1,2,3,4] ) # 元素之间不能用空格隔开
