@@ -217,7 +217,7 @@ x[np.array([True,False,True,True,False])] = -1, -2, -3
 print ( x )
 
 # 布尔数组下标的应用
-x = np.random.randint(0,10,6) # 产生长度为6的随机数组，0-10之间
+x = np.random.randint(0,10,6) # 产生长度为6的随机数组，0-9之间，左闭右开
 print ( x )
 a = x[ x > 5 ]  # x > 5会产生一个长度为6的布尔数组
 print ( a )
