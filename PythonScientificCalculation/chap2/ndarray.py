@@ -20,7 +20,8 @@ print ( " array a: ", a )
 print ( " array b: ", b )
 print ( " array c: ", c )
 m = len(c)  # 获取二维数组的行与列
-n = len(c[0,:])
+n = len(c[0][:]) # 等价于n = len( c[0,:] )
+# python中的数组元素可以写为c[m,n]或者c[m][n]
 print ( " row c: ", m )  # m = 3
 print ( " col c: ", n )  # n = 4
 input()  # 暂停语句
@@ -28,7 +29,7 @@ input()  # 暂停语句
 # 输出二维数组
 for i in range( m ):
       for j in range( n ):
-            print ( c[i][j], end = ' ' )
+            print ( c[i,j], end = ' ' )
             if j == n-1:
                   print ( '\n' )  # 换行
 input()
@@ -45,12 +46,12 @@ input()
 # 改变二维数组c的形状
 c.shape = 4, 3
 m = len(c)  # 获取二维数组的行与列
-n = len(c[0])  # 或len(c[0][:])
+n = len(c[0])  # 或len(c[0][:])或len( c[0,:] )
 print ( " row c: ", m )
 print ( " col c: ", n )
 for i in range( m ):
       for j in range( n ):
-            print ( c[i][j], end = ' ' )
+            print ( c[i,j], end = ' ' )
             if j == n-1:
                   print ( '\n' )
 
@@ -58,7 +59,7 @@ for i in range( m ):
 # 由于数组c有12个元素，因此下面的程序将数组c的shape改成了(2,6)
 c.shape = 2, -1
 m = len(c)  # 获取二维数组的行与列
-n = len(c[0])  # len(c[0][:])
+n = len(c[0])  # len(c[0][:])或len( c[0,:] )
 print ( " row c: ", m )
 print ( " col c: ", n )
 for i in range( m ):
@@ -73,31 +74,25 @@ print ( a )
 # 但是这种情况，a和d是共享数据存储空间，一个改变，另一个也改变
 d = a.reshape((2,2)) # 由于数组形状的type为tuple，所以是(2,2),不是[2,2]
 print ( " d :", d )
-# d的size是2*2，shape是(2,2)
+# d的size是4=2*2，shape是(2,2)
 print ( " d.shape: ", d.shape )  #(2,2)
 print ( " d.size: ", d.size )   # size: 4 = 2*2
 input()
 
 # 由于共享内存，所以d的shape改变，a的shape也改变
 e = a
-e.shape = 2, 2
+e.shape = (2, 2)  # 数组形状的type为tuple，建议写成(2,2). 当然e.shape = 2, 2也行
 print ( " shape a: ", a.shape )  # (2,2)
 print ( " e :", e ) # [ [2,4], [6,8] ]
-a[1] = 100  # 改变a的第一行后e的第一行也改变
+a[1] = 100  # a[1]与a[1,:]等价。改变a的第一行后e的第一行也改变
 print( e )  # [ [2,4], [100,100] ]
 input()
-
-# sizd的用法
-from numpy import random  
-matrix1 = random.random(size=(2,4))  
-# 每维的大小  
-print( matrix1.shape )
 
 # 对应矩阵元素相乘
 # 对于aray对象：
 a = np.array( [[1,2],[3,4]] )
 b = np.array( [[4,3],[2,1]] )
-print ( " a*b: ", a*b )
+print ( " a*b: ", a*b )  # 对应位置相乘
 
 # 按矩阵运算法则相乘: np.dot和np.matmul运算结果一样
 print ( " np.dot(a,b): ", np.dot(a,b) )
@@ -139,15 +134,15 @@ t4 = t2.astype( np.complex64 )  # complex64时需要指定
 # 一维数组
 # 1. arange()类似于内置函数range(), 指定开始值，终值和步长
 a = np.arange( 0, 1, 0.1, dtype = float )
-print ( 'a = ', a )  # [0.1, 0.2, ...,  0.9]
+print ( 'a = ', a )  # [0., 0.1, 0.2, ...,  0.9] 10个数。10 = (1-0)/0.1
 # 2. linspace()通过指定开始值，终值和元素个数创建等差数列一维数组
 # 可以通过endpoint指定是否包含终值，默认值位True, 即包含终值
 b = np.linspace( 0, 1, 10, dtype = np.float64 )
 print ( 'b = ', b )
-# 3. logspace()创建的数组是等比数列。默认的基数是10
-a = np.logspace( 0, 2, 5 )
+# 3. logspace()创建的数组是等比数列。默认的基数是10, 默认包含终值
+a = np.logspace( 0, 2, 5 )  # 此时默认包含终值：10^0--10^2, 5个等比数
 print ( 'a = ', a )
-b = np.logspace( 0, 1, 12, base = 2.0, endpoint = False )
+b = np.logspace( 0, 1, 12, base = 2.0, endpoint = False ) # False指定不包含终值
 print ( 'b = ', b )
 input()
 # 上面的三个函数创建的都是一维数组
@@ -258,7 +253,7 @@ print ( a[0,3:5] )  # 数组片段a被改变
 # 多维数组的下标中，也可以用整数元组或列表、整数数组和布尔数组
 # 当下标使用这些对象时，所获得的数据是原始数据的副本，因此修改结果数组不会改变原始数组
 a = np.arange(0,60,10).reshape(-1,1) + np.arange(0,6)
-print ( a[(0,1,2,3),(1,2,3,4)] )  
+print ( a[(0,1,2,3),(1,2,3,4)] )  # 返回数组[ a[0,1],a[1,2],a[2,3],a[3,4] ]
 # a[0,1],a[1,2],a[2,3],a[3,4]得到的是一维数组
 print ( '---------------------------' )
 b = a[(0,1,2,3),(1,2,3,4)] # 数组b为4行
