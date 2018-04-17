@@ -74,3 +74,5 @@ for j in range(3):
       # del buf 与下句等价
       buf = []
       print( '--------------------------------' )
+      
+print ( data[1,1] )
