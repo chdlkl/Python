@@ -76,3 +76,14 @@ for j in range(3):
       print( '--------------------------------' )
       
 print ( data[1,1] )
+
+# 查找数组沿着某一个位置，最大值的位置
+a = np.array( [ [1,2,3],[2,3,4],[3,4,5] ] )
+m = len( a )  # 行数
+n = len( a[0,:] ) # 列数
+for j in range(n):
+      re = np.where( a[:,j] == np.max( a[:,j] ) )
+      print( re[0] )
+
+for i in range(1,1):
+      print('a')
